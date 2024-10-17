@@ -5,13 +5,13 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class master_pricing_component extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.hasMany(models.primary_pricings,{foreignKey:"pricing_component_id"})
+      this.hasMany(models.secondary_pricings,{foreignKey:"pricing_component_id"})
+      this.hasMany(models.one_time_charges,{foreignKey:"pricing_component_id"})
+      this.hasMany(models.refundables,{foreignKey:"pricing_component_id"})
+      this.hasMany(models.inventory_items,{foreignKey:"pricing_component_id"})
+      this.hasMany(models.parking_slots,{foreignKey:"pricing_component_id"})
     }
   }
   master_pricing_component.init({

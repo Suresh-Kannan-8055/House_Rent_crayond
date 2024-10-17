@@ -5,13 +5,12 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class quotation_details extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.users,{foreignKey:"lead_id"})
+      this.belongsTo(models.users,{foreignKey:"created_by"})
+      this.belongsTo(models.users,{foreignKey:"updated_by"})
+      this.belongsTo(models.users,{foreignKey:"deleted_by"})
+      this.hasMany(models.select_qutations,{foreignKey:"quotation_id"})
     }
   }
   quotation_details.init({

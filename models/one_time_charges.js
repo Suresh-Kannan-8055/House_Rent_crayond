@@ -5,13 +5,14 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class one_time_charges extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.master_revenue_types,{foreignKey:"revenue_id"})
+      this.belongsTo(models.master_tax_groups,{foreignKey:"tax_group_id"})
+      this.belongsTo(models.master_pricing_components,{foreignKey:"pricing_component_id"})
+      this.belongsTo(models.master_component_baseds,{foreignKey:"component_based_id"})
+      this.belongsTo(models.users,{foreignKey:"created_by"})
+      this.belongsTo(models.users,{foreignKey:"updated_by"})
+      this.hasOne(models.unit_customises,{foreignKey:"one_time_charges_id"}) 
     }
   }
   one_time_charges.init({

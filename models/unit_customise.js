@@ -5,13 +5,18 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class unit_customise extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.master_unit_details,{foreignKey:"unit_id"})
+      this.belongsTo(models.primary_pricings,{foreignKey:"primary_pricing_id"})
+      this.belongsTo(models.secondary_pricings,{foreignKey:"secondary_pricing_id"})
+      this.belongsTo(models.one_time_charges,{foreignKey:"one_time_charges_id"})
+      this.belongsTo(models.refundables,{foreignKey:"refundable_id"})
+      this.belongsTo(models.inventory_items,{foreignKey:"inventory_items_id"})
+      this.belongsTo(models.parking_slots,{foreignKey:"parking_slot_id"})
+      this.belongsTo(models.users,{foreignKey:"created_by"})
+      this.belongsTo(models.users,{foreignKey:"updated_by"})
+      this.hasMany(models.multiselect_amenities,{foreignKey:"customization_id"})
+      this.hasMany(models.multiselect_utilities,{foreignKey:"customization_id"})
     }
   }
   unit_customise.init({

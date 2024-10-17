@@ -5,13 +5,11 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class master_unit_details extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.users,{foreignKey:"deleted_by"})
+      this.hasMany(models.master_unit_images,{foreignKey:"unit_id"})
+      this.hasMany(models.select_qutations,{foreignKey:"unit_details_id"})
+      this.hasMany(models.unit_customises,{foreignKey:"unit_id"})
     }
   }
   master_unit_details.init({

@@ -5,14 +5,13 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class master_tax_group extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
-    }
+      this.hasMany(models.primary_pricings,{foreignKey:"tax_group_id"})
+      this.hasMany(models.secondary_pricings,{foreignKey:"tax_group_id"})
+      this.hasMany(models.one_time_charges,{foreignKey:"tax_group_id"})
+      this.hasMany(models.refundables,{foreignKey:"tax_group_id"})
+      this.hasMany(models.inventory_items,{foreignKey:"tax_group_id"})
+      this.hasMany(models.parking_slots,{foreignKey:"tax_group_id"})    }
   }
   master_tax_group.init({
     id: {
