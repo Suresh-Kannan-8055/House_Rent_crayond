@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'master_revenue_type',
+    modelName: 'master_revenue_types',
     createdAt:false,
     updatedAt:false,
   });

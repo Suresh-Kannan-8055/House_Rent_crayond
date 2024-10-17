@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'master_utility',
+    modelName: 'master_utilities',
     createdAt:true,
     updatedAt:true,
   });

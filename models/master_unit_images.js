@@ -22,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       unit_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references:{
+          model:'master_unit_details',
+          key:'id'
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade',
       },
       name: {
         type: Sequelize.TEXT,
